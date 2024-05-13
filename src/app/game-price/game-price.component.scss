@@ -1,0 +1,9 @@
+.games {
+  display: flex;
+  &__grid {
+    flex: 1;
+    height: 500px;
+
+  }
+}
+

@@ -1,0 +1,7 @@
+<div class="games">
+  <form [formGroupName]="'selectionForm'">
+    <ag-grid-angular class="games__grid ag-theme-quartz" [rowData]="cheapestGames()" [columnDefs]="columnDefs" (gridReady)="load()"/>
+    <!-- <ag-grid-angular class="games__grid ag-theme-quartz" [gridOptions]="gridOptions"/> -->
+  </form>
+</div>
+
