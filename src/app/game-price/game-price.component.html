@@ -1,7 +1,11 @@
 <div class="games">
-  <form [formGroupName]="'selectionForm'">
-    <ag-grid-angular class="games__grid ag-theme-quartz" [rowData]="cheapestGames()" [columnDefs]="columnDefs" (gridReady)="load()"/>
-    <!-- <ag-grid-angular class="games__grid ag-theme-quartz" [gridOptions]="gridOptions"/> -->
+  <!-- <ag-grid-angular class="games__grid ag-theme-quartz" [rowData]="cheapestGames()" [columnDefs]="columnDefs"
+    (gridReady)="load()" /> -->
+  <ag-grid-angular class="games__grid ag-theme-quartz" [gridOptions]="gridOptions"/>
+  <form [formGroup]="selectionForm">
+    <mat-form-field [color]="'accent'">
+      <mat-label>Select no. of games</mat-label>
+      <input matInput type="text" formGroupName="noGames">
+    </mat-form-field>
   </form>
 </div>
-

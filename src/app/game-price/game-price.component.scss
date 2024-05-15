@@ -1,7 +1,8 @@
 .games {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
   &__grid {
-    flex: 1;
     height: 500px;
 
   }
