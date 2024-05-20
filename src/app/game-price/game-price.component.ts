@@ -7,7 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import _ from 'lodash';
 import { AgGridAngular } from 'ag-grid-angular';
 import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-game-price',
@@ -26,14 +27,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class GamePriceComponent implements OnInit {
   public games = signal<Game[]>([])
-  private api: GridApi = new GridApi;
-  public selectionForm: FormGroup = this.fb.group({
-    noGames: [0]
-  })
-  public cheapestGames = computed<Game[]>(() => _.chunk(this.games().sort((a, b) => a.salePrice - b.salePrice), this.selectionForm.get('noGames')?.value)[1] ?? []);
+  public cheapestGames: Game[] = [];
+  public selectionForm = this.fb.group({
+    noGames: [0],
+  });
 
   public gridOptions: GridOptions = {
-    rowData: [],
     columnDefs: [
       {
         field: 'internalName',
@@ -93,20 +92,19 @@ export class GamePriceComponent implements OnInit {
         field: 'thumb',
       }
     ],
-    onGridReady: (param) => this.api = param.api,
   }
 
   constructor(
     private gameService: GamePriceService,
     private fb: FormBuilder
   ) {
-    effect(() => { this.api.setGridOption('rowData', []) })
-  }
-
+    this.selectionForm.get('noGames')?.valueChanges.pipe(takeUntilDestroyed()).subscribe(x => {
+      this.cheapestGames = (_.chunk(this.games(), x ?? 1)[0] as Game[]) ?? [];
+    })
+   }
   ngOnInit(): void {
     this.load()
   }
-
   public load(): void {
     this.gameService.getAllDeals().subscribe(games => this.games.set(games))
   }

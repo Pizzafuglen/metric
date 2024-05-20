@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 
 export interface Game {
@@ -33,7 +34,7 @@ export class GamePriceService {
   ) { }
 
   public getAllDeals(): Observable<Game[]> {
-    return this.httpClient.get<Game[]>('https://www.cheapshark.com/api/1.0/deals')
+    const deals = this.httpClient.get<Game[]>('https://www.cheapshark.com/api/1.0/deals');
+    return deals;
   }
-
 }
