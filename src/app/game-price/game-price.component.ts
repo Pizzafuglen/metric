@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import _ from 'lodash';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridOptions, ColDef, GridApi } from 'ag-grid-community';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GridOptions } from 'ag-grid-community';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
