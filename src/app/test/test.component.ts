@@ -1,42 +1,49 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
 import _ from 'lodash';
+
+interface TestObject {
+  id: number,
+  sub: number[],
+}
+interface Relation {
+  parent: TestObject,
+  child?: TestObject,
+}
 
 @Component({
   selector: 'app-test',
   standalone: true,
   imports: [
     CommonModule,
+    MatSelectModule,
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent implements OnInit {
-  public testArr = [{ id: 1, sub: [2, 3, 4] }, { id: 2, sub: [1, 3, 4] }, { id: 3, sub: [4] },  { id: 4, sub: [] },{ id: 2, sub: [3, 4] }, { id: 3, sub: [4] }, { id: 2, sub: [3, 4] }, { id: 3, sub: [4] }];
+  public testArr = [{ id: 1, sub: [2, 3, 4] }, { id: 2, sub: [1, 3, 4] }, { id: 3, sub: [4] },  { id: 4, sub: [] },];
 
-  public parentChildArr: {parent: { id: number, sub: number[] }, child: { id: number, sub: number[] }}[] = [];
-
-  public storageArr: any = []
-  public test2: any = []
+  public parentChildArr: Relation[] = [];
+  public resultingArray: string[] = [];
 
   constructor() {
     this.defineParentChild(this.testArr)
-    this.parentChildArr.forEach(relation => this.recursive(relation, []))
-    // console.log(this.parentChildArr);
-    console.log(this.test2)
-
+    this.parentChildArr.forEach(relation => this.recursive(relation, [], 0))
+    console.log(this.resultingArray)
   }
   ngOnInit(): void { }
 
-  public defineParentChild(arr: any[] ) {
-    arr.forEach((parent: { id: number, sub: number[] }) => {
+  public defineParentChild(arr: TestObject[] ) {
+    arr.forEach((parent: TestObject) => {
       if(parent.sub.length > 0) {
         parent.sub.forEach(sub => {
-          this.parentChildArr.push({parent: parent, child: this.testArr!.find(test => test.id === sub)!})
+          this.parentChildArr.push({parent: parent, child: this.testArr.find(test => test.id === sub)})
         })
       } else {
-        this.parentChildArr.push({parent: parent, child: {id: 0, sub: []}})
+        this.parentChildArr.push({parent: parent})
       }
     })
   }
@@ -49,17 +56,14 @@ export class TestComponent implements OnInit {
 
   // Menu 1 can contain menu 5, but menu 5 can't contain meny 1, as that would result in a circular dependency
 
-  public recursive(obj: {parent: { id: number, sub: number[] }, child: { id: number, sub: number[] }}, path: { id: number, sub: number[] }[]) {
-    if(!path.some(p => p.id === obj.parent.id)) {
-      path.push(obj.parent)
+  public recursive(obj: Relation, path: TestObject[], level: number) {
+    path.splice(level, path.length - level, obj.parent)
+    const pathString = _.cloneDeep(path).map(obj => obj.id).toString()
+    if(!this.resultingArray.some(string => string === pathString)) {
+      this.resultingArray.push(pathString)
     }
-    path.push(obj.child)
-
-    this.test2.push(_.cloneDeep(path))
-    if (obj?.child?.sub?.length > 0) {
-      // console.log(this.parentChildArr.find(relation => relation.parent.id === obj.child.id && obj.child.id !== relation.child.id));
-
-      this.recursive(this.parentChildArr.find(relation => relation?.parent?.id === obj?.child?.id && obj?.parent?.id !== relation?.child?.id)!, path)
+    if (obj.parent.sub.length > 0) {
+      this.recursive(this.parentChildArr.find(relation => relation.parent.id === obj.child?.id && obj.parent.id !== relation.child?.id)!, path, level + 1)
     }
   }
 }

@@ -1,1 +1,20 @@
-<p>test works!</p>,
+<div class="container">
+  <div class="display">
+    @for(array of resultingArray; track array) {
+      <p class="display__array">{{array}}</p>
+    }
+  </div>
+  <div class="selection">
+    <mat-form-field [color]="'accent'">
+      <mat-label>Arrays</mat-label>
+      <mat-select>
+        <mat-select-trigger>
+
+        </mat-select-trigger>
+        @for (array of resultingArray; track array) {
+      <mat-option [value]="array">{{array}}</mat-option>
+    }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

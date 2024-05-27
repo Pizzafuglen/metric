@@ -1,3 +1,22 @@
 :host {
   display: block;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.display {
+  flex:1;
+  &__array {
+    margin: 8px;
+  }
+}
+
+.selection {
+  flex:1;
+  margin: 8px;
+}
