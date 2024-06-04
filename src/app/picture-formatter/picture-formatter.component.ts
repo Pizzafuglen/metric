@@ -26,7 +26,8 @@ export class PictureFormatterComponent implements OnInit {
     objectFit: [''],
     objectX: [''],
     objecty: [''],
-    // objectWidth: [0],
+    objectHeight: [0],
+    objectWidth: [0],
   })
 
   public objectFit = signal('contain')

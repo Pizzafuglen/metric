@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap:0px;
+  width: 72px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 4px;
+  &__selector {
+
+  }
+}

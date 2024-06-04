@@ -1,0 +1,8 @@
+<div class="container">
+  <label>{{label()}}</label>
+  <select class="container__selector" id="your-select">
+    @for(option of options; track $index) {
+      <option [value]="option" [label]="option.id"></option>
+    }
+  </select>
+</div>
