@@ -1,42 +1,39 @@
 .container {
   display: flex;
-  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
   display: flex;
   gap: 5px;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .resume {
   display: flex;
-  margin: 10px;
+  margin: 10px 200px 10px 200px;
   padding: 15px;
   height: 100%;
   flex: 1;
-  // border: 1px solid gray;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px lighten(gray, 30);
+  box-shadow: 0 0 3px lighten(gray, 20);
   gap: 15px;
   background-color: lighten(gray, 40);
+  // border: 1px solid lighten(gray, 35);
 
   &__about {
-    // background-color: rgb(230, 230, 230);
-    // flex: 1;
-    // margin: 10px;
-    // border: 1px solid gray;
-    // justify-content: center;
+    display: flex;
+    transition: 0.5s;
+    border-radius: 5px;
     padding: 15px;
     box-shadow: 3px 3px 3px lighten(gray, 30);
     background-color: lighten(gray, 45);
     gap: 15px;
-    display: flex;
-    height: 1000px;
-    border-radius: 5px;
     width: 250px;
     flex-direction: column;
-    transition: 0.5s;
   }
 
   &__about:hover {
@@ -51,27 +48,62 @@
   }
 
   &__priorexperience {
-    border: 1px solid gray;
+    display: flex;
+    transition: 0.5s;
     border-radius: 5px;
-    // flex: 1;
     height: 25%;
+    padding: 15px;
+    box-shadow: 3px 3px 3px lighten(gray, 30);
+    background-color: lighten(gray, 45);
+    gap: 15px;
+  }
+
+  &__priorexperience:hover {
+    box-shadow: 3px 3px 3px lighten(gray, 20);
   }
 
   &__projects {
-    border: 1px solid gray;
+    display: flex;
+    transition: 0.5s;
+    border-radius: 5px;
+    height: 75%;
+    padding: 15px;
+    box-shadow: 3px 3px 3px lighten(gray, 30);
+    background-color: lighten(gray, 45);
+    gap: 15px;
+  }
+
+  &__projects:hover {
+    box-shadow: 3px 3px 3px lighten(gray, 20);
+  }
+
+  &__education {
     border-radius: 5px;
     flex: 1;
+    background-color: lighten(gray, 30);
+  }
 
+  &__jobs {
+    border-radius: 5px;
+    flex: 1;
+    background-color: lighten(gray, 30);
+  }
+
+  &__interests {
+    border-radius: 5px;
+    flex: 1;
+    background-color: lighten(gray, 30);
   }
 
   &__picture {
     height: 300px;
     width: 100%;
     border-radius: 5px;
-    // margin: 15px;
     background-image: url(../../../pictures/Buteo_buteo_-Scotland-8.jpg);
     background-position: 45% 10%;
   }
 
-  &__whoami {}
+  &__whoami {
+
+  }
 }
