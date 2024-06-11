@@ -1,0 +1,25 @@
+.container {
+
+}
+
+.whoami {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &__picture {
+    height: 300px;
+    width: 100%;
+    border-radius: 5px;
+    background-image: url(../../../../pictures/Buteo_buteo_-Scotland-8.jpg);
+    background-position: 45% 10%;
+  }
+
+  &__name {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}

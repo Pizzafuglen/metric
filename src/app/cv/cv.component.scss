@@ -4,14 +4,6 @@
   justify-content: center;
 }
 
-.name {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
 .resume {
   display: flex;
   margin: 10px 200px 10px 200px;
@@ -93,17 +85,5 @@
     border-radius: 5px;
     flex: 1;
     background-color: lighten(gray, 30);
-  }
-
-  &__picture {
-    height: 300px;
-    width: 100%;
-    border-radius: 5px;
-    background-image: url(../../../pictures/Buteo_buteo_-Scotland-8.jpg);
-    background-position: 45% 10%;
-  }
-
-  &__whoami {
-
   }
 }
