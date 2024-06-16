@@ -1,7 +1,7 @@
 <div class="container">
   <div class="display">
     @for(array of resultingArray; track array) {
-      <p class="display__array">{{array}}</p>
+    <p class="display__array">{{array}}</p>
     }
   </div>
   <div class="selection">
@@ -12,9 +12,19 @@
 
         </mat-select-trigger>
         @for (array of resultingArray; track array) {
-      <mat-option [value]="array">{{array}}</mat-option>
-    }
+        <mat-option [value]="array">{{array}}</mat-option>
+        }
       </mat-select>
     </mat-form-field>
   </div>
+
+  <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'">
+      {{node.id}}
+    </cdk-tree-node>
+    <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
+      [style.display]="shouldRender(node) ? 'flex' : 'none'">
+      {{node.id}}
+    </cdk-tree-node>
+  </cdk-tree>
 </div>

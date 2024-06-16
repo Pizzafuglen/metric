@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
+import {CdkTreeModule, FlatTreeControl} from '@angular/cdk/tree';
 import _ from 'lodash';
+import { ArrayDataSource } from '@angular/cdk/collections';
 
 interface TestObject {
   id: number,
@@ -18,6 +20,7 @@ interface Relation {
   imports: [
     CommonModule,
     MatSelectModule,
+    CdkTreeModule,
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.scss',
@@ -28,11 +31,44 @@ export class TestComponent implements OnInit {
 
   public parentChildArr: Relation[] = [];
   public resultingArray: string[] = [];
+  public newArr: {id: number, sub: number[], level: number, expandable: boolean}[] = [];
+
+  public treeControl = new FlatTreeControl<{id: number, sub: number[], level: number, expandable: boolean}>(
+    node => node.level,
+    node => node.expandable,
+  )
+
+  public hasChild = (_: number, node: {id: number, sub: number[], level: number, expandable: boolean}) => node.expandable;
+
+  public getParentNode(node: {id: number, sub: number[], level: number, expandable: boolean}) {
+    const nodeIndex = this.newArr.indexOf(node);
+
+    for (let i = nodeIndex - 1; i >= 0; --i) {
+      if(this.newArr[i].level === node.level - 1) {
+        return this.newArr[i];
+      }
+    }
+    return null
+  }
+
+  public shouldRender(node: {id: number, sub: number[], level: number, expandable: boolean}) {
+    let parent = this.getParentNode(node);
+    while(parent) {
+      if (!parent.expandable){
+        return false;
+      }
+      parent = this.getParentNode(parent)
+    }
+    return true;
+  }
+
+  public dataSource = new ArrayDataSource(this.newArr)
 
   constructor() {
     this.defineParentChild(this.testArr)
-    this.parentChildArr.forEach(relation => this.recursive(relation, [], 0))
+    this.parentChildArr.forEach(relation => this.recursive(relation, 0))
     console.log(this.resultingArray)
+    console.log(this.newArr)
   }
   ngOnInit(): void { }
 
@@ -56,14 +92,10 @@ export class TestComponent implements OnInit {
 
   // Menu 1 can contain menu 5, but menu 5 can't contain meny 1, as that would result in a circular dependency
 
-  public recursive(obj: Relation, path: TestObject[], level: number) {
-    path.splice(level, path.length - level, obj.parent)
-    const pathString = _.cloneDeep(path).map(obj => obj.id).toString()
-    if(!this.resultingArray.some(string => string === pathString)) {
-      this.resultingArray.push(pathString)
-    }
+  public recursive(obj: Relation, level: number) {
+    this.newArr.push({...obj.parent, expandable: obj.parent.sub.length > 0, level})
     if (obj.parent.sub.length > 0) {
-      this.recursive(this.parentChildArr.find(relation => relation.parent.id === obj.child?.id && obj.parent.id !== relation.child?.id)!, path, level + 1)
+      this.recursive(this.parentChildArr.find(relation => relation.parent.id === obj.child?.id && obj.parent.id !== relation.child?.id)!, level + 1)
     }
   }
 }
