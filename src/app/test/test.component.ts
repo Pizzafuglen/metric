@@ -31,16 +31,16 @@ export class TestComponent implements OnInit {
 
   public parentChildArr: Relation[] = [];
   public resultingArray: string[] = [];
-  public newArr: {id: number, sub: number[], level: number, expandable: boolean}[] = [];
+  public newArr: {id: number, sub: number[], level: number, expandable: boolean, isExpanded: boolean}[] = [];
 
-  public treeControl = new FlatTreeControl<{id: number, sub: number[], level: number, expandable: boolean}>(
+  public treeControl = new FlatTreeControl<{id: number, sub: number[], level: number, expandable: boolean, isExpanded: boolean}>(
     node => node.level,
     node => node.expandable,
   )
 
-  public hasChild = (_: number, node: {id: number, sub: number[], level: number, expandable: boolean}) => node.expandable;
+  public hasChild = (_: number, node: {id: number, sub: number[], level: number, expandable: boolean, isExpanded: boolean}) => node.expandable;
 
-  public getParentNode(node: {id: number, sub: number[], level: number, expandable: boolean}) {
+  public getParentNode(node: {id: number, sub: number[], level: number, expandable: boolean, isExpanded: boolean}) {
     const nodeIndex = this.newArr.indexOf(node);
 
     for (let i = nodeIndex - 1; i >= 0; --i) {
@@ -51,10 +51,10 @@ export class TestComponent implements OnInit {
     return null
   }
 
-  public shouldRender(node: {id: number, sub: number[], level: number, expandable: boolean}) {
+  public shouldRender(node: {id: number, sub: number[], level: number, expandable: boolean, isExpanded: boolean}) {
     let parent = this.getParentNode(node);
     while(parent) {
-      if (!parent.expandable){
+      if (!parent.isExpanded){
         return false;
       }
       parent = this.getParentNode(parent)
@@ -93,7 +93,7 @@ export class TestComponent implements OnInit {
   // Menu 1 can contain menu 5, but menu 5 can't contain meny 1, as that would result in a circular dependency
 
   public recursive(obj: Relation, level: number) {
-    this.newArr.push({...obj.parent, expandable: obj.parent.sub.length > 0, level})
+    this.newArr.push({...obj.parent, expandable: obj.parent.sub.length > 0, level, isExpanded: false})
     if (obj.parent.sub.length > 0) {
       this.recursive(this.parentChildArr.find(relation => relation.parent.id === obj.child?.id && obj.parent.id !== relation.child?.id)!, level + 1)
     }

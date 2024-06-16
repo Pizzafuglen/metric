@@ -1,8 +1,19 @@
 <div class="container">
   <div class="display">
-    @for(array of resultingArray; track array) {
-    <p class="display__array">{{array}}</p>
-    }
+    <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'">
+      {{node.id}}
+      </cdk-tree-node>
+      <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
+        [style.display]="shouldRender(node) ? 'flex' : 'none'">
+
+        <span class="material-symbols-outlined" cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name"
+        (click)="node.isExpanded = !node.isExpanded" [style.visibility]="node.expandable ? 'visible' : 'hidden'">
+           {{node.isExpanded ? 'unfold_less' : 'unfold_more'}}
+          </span>
+       {{node.id}}
+      </cdk-tree-node>
+    </cdk-tree>
   </div>
   <div class="selection">
     <mat-form-field [color]="'accent'">
@@ -17,14 +28,4 @@
       </mat-select>
     </mat-form-field>
   </div>
-
-  <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'">
-      {{node.id}}
-    </cdk-tree-node>
-    <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
-      [style.display]="shouldRender(node) ? 'flex' : 'none'">
-      {{node.id}}
-    </cdk-tree-node>
-  </cdk-tree>
 </div>
