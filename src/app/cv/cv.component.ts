@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { AboutMeComponent } from "./about-me/about-me.component";
+import { AcoladesComponent } from "./acolades/acolades.component";
 
 @Component({
     selector: 'app-cv',
@@ -10,7 +11,8 @@ import { AboutMeComponent } from "./about-me/about-me.component";
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
-        AboutMeComponent
+        AboutMeComponent,
+        AcoladesComponent
     ]
 })
 export class CvComponent implements OnInit {
