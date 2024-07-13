@@ -1,3 +1,7 @@
+.about {
+  display: flex;
+  flex-direction: column;
+}
 .resume {
   background-color: lighten(gray, 40);
   box-shadow: 0 0 3px lighten(gray, 20);
