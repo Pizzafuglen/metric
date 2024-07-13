@@ -1,20 +1,40 @@
 <div class="acolades">
-  <div class="current-acolade">
-    {{selectCurrentAcolade().title}}
-    -
-    {{selectCurrentAcolade().duration}}
-    -
-    {{selectCurrentAcolade().description}}
-    @for(tag of selectCurrentAcolade().tags; track $index) {
-      ({{tag}})
-    }
+  <div class="acolades__work">
+    <div class="current-acolade">
+      <h2>{{selectCurrentAcolade().title}}</h2>
+      <h4>{{selectCurrentAcolade().fromDate | date}} - {{selectCurrentAcolade().toDate | date}}</h4>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam odio?</p>
+
+      @for(tag of selectCurrentAcolade().tags; track $index) {
+        ({{tag}})
+      }
+    </div>
+    <div class="controls">
+      <button>
+        next
+      </button>
+      <button>
+        prev
+      </button>
+    </div>
   </div>
-  <div class="controls">
-    <button>
-      next
-    </button>
-    <button>
-      prev
-    </button>
+  <div class="acolades__education">
+    <div class="current-acolade">
+      <h2>{{selectCurrentAcolade().title}}</h2>
+      <h4>{{selectCurrentAcolade().fromDate | date}} - {{selectCurrentAcolade().toDate | date}}</h4>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam odio?</p>
+
+      @for(tag of selectCurrentAcolade().tags; track $index) {
+        ({{tag}})
+      }
+    </div>
+    <div class="controls">
+      <button>
+        next
+      </button>
+      <button>
+        prev
+      </button>
+    </div>
   </div>
 </div>

@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
 import { CarouselComponent } from '../../fundamentals/carousel/carousel.component';
 interface Acolade {
   title: string,
-  duration: string,
+  fromDate: string,
+  toDate: string | 'NOW',
   description: string,
   tags: string[],
 }
@@ -23,25 +24,29 @@ export class AcoladesComponent implements OnInit {
   public testAcolades: Acolade[] = [
     {
      title: 'Test',
-     duration: '2014-2015',
-     description: 'This is a test description for my acolades slider',
+     fromDate: '01-02-2000',
+     toDate: '01-02-2001',
+     description: '',
      tags: ['Tag1', 'Tag2', 'Tag3'],
     },
     {
       title: 'Test1',
-      duration: '2014-2015',
+      fromDate: '',
+     toDate: '',
       description: 'This is a test description for my acolades slider',
       tags: ['Tag1', 'Tag2', 'Tag3'],
      },
      {
       title: 'Test2',
-      duration: '2014-2015',
+      fromDate: '',
+     toDate: '',
       description: 'This is a test description for my acolades slider',
       tags: ['Tag1', 'Tag2', 'Tag3'],
      },
      {
       title: 'Test3',
-      duration: '2014-2015',
+      fromDate: '',
+     toDate: '',
       description: 'This is a test description for my acolades slider',
       tags: ['Tag1', 'Tag2', 'Tag3'],
      },
@@ -50,7 +55,7 @@ export class AcoladesComponent implements OnInit {
   public currentAcolade: Acolade | null = null;
 
   public selectCurrentAcolade(): Acolade {
-    return this.testAcolades[1]
+    return this.testAcolades[0]
   }
   ngOnInit(): void { }
 }
