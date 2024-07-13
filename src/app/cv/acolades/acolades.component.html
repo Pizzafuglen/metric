@@ -1,3 +1,20 @@
 <div class="acolades">
-  <app-carousel [slides]="testAcolades"></app-carousel>
+  <div class="current-acolade">
+    {{selectCurrentAcolade().title}}
+    -
+    {{selectCurrentAcolade().duration}}
+    -
+    {{selectCurrentAcolade().description}}
+    @for(tag of selectCurrentAcolade().tags; track $index) {
+      ({{tag}})
+    }
+  </div>
+  <div class="controls">
+    <button>
+      next
+    </button>
+    <button>
+      prev
+    </button>
+  </div>
 </div>

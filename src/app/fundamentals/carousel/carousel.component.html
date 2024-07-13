@@ -1,7 +1,8 @@
 <div class="container">
   @for (item of slides(); track $index) {
    <div class="slide">
-    {{item.title}}
+    <div class="slider__title">{{item.title}}</div>
+    <div class="slider__description">{{item.description}}</div>
    </div>
   }
 </div>
