@@ -2,6 +2,30 @@
   display: flex;
   align-items: end;
   justify-content: center;
+  gap: 5px;
+
+  &__next {
+    background-color: lighten($color: blue, $amount: 35);
+    border-radius: 5px;
+    border: 0;
+    width: 50%;
+    height: 30px;
+    transition: 0.3s
+  }
+  &__next:hover {
+    background-color: lighten($color: blue, $amount: 25);
+  }
+  &__prev {
+    background-color: lighten($color: blue, $amount: 35);
+    border-radius: 5px;
+    border: 0;
+    width: 50%;
+    height: 30px;
+    transition: 0.3s
+  }
+  &__prev:hover {
+    background-color: lighten($color: blue, $amount: 25);
+  }
 }
 
 .acolades {
@@ -13,29 +37,46 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 5px;
-    background-color: lighten($color: gray, $amount: 35);
+    gap: 15px;
+    background-color: lighten($color: blue, $amount: 42);
     padding: 15px;
     border-radius: 5px;
-    transition: 0.3s;
   }
-
-  &__work:hover {
-    background-color: lighten($color: gray, $amount: 30);
-  }
-
   &__education {
     justify-content: space-between;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    background-color: lighten($color: gray, $amount: 35);
+    gap: 15px;
+    background-color: lighten($color: blue, $amount: 42);
     padding: 15px;
     border-radius: 5px;
-    transition: 0.3s;
-  }
-
-  &__education:hover {
-    background-color: lighten($color: gray, $amount: 30);
   }
 }
+
+.current-acolade {
+  display: flex;
+  flex-direction: row;
+  &__step {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 10%
+  }
+}
+
+.notch {
+  &__current {
+    background-color: lighten($color: blue, $amount: 35);
+    height: 10px;
+    width: 20px;
+    border-radius: 3px;
+  }
+  &__passive {
+    background-color: lighten($color: blue, $amount: 45);
+    height: 10px;
+    width: 20px;
+    border-radius: 3px;
+  }
+}
+
+

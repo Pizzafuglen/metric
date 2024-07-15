@@ -1,39 +1,71 @@
 <div class="acolades">
   <div class="acolades__work">
     <div class="current-acolade">
-      <h2>{{selectCurrentAcolade().title}}</h2>
-      <h4>{{selectCurrentAcolade().fromDate | date}} - {{selectCurrentAcolade().toDate | date}}</h4>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam odio?</p>
-
-      @for(tag of selectCurrentAcolade().tags; track $index) {
+      <div class="current-acolade__content">
+        <h2>{{currentAcolade().title}}</h2>
+        <h4>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}}</h4>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore
+          inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam
+          odio?</p>
+        @for(tag of currentAcolade().tags; track $index) {
         ({{tag}})
-      }
+        }
+      </div>
+      <div class="current-acolade__step">
+        @for(index of acolades; track $index) {
+          @if (index === currentAcolade()) {
+            <div class="notch__current"></div>
+          } @else {
+            <div class="notch__passive"></div>
+          }
+        }
+      </div>
     </div>
     <div class="controls">
-      <button>
-        next
+      <button class="controls__prev" (click)="selectPrevAcolade($event)">
+        <span class="material-symbols-rounded">
+          chevron_left
+        </span>
       </button>
-      <button>
-        prev
+      <button class="controls__next" (click)="selectNextAcolade($event)">
+        <span class="material-symbols-rounded">
+          chevron_right
+        </span>
       </button>
     </div>
   </div>
   <div class="acolades__education">
     <div class="current-acolade">
-      <h2>{{selectCurrentAcolade().title}}</h2>
-      <h4>{{selectCurrentAcolade().fromDate | date}} - {{selectCurrentAcolade().toDate | date}}</h4>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam odio?</p>
-
-      @for(tag of selectCurrentAcolade().tags; track $index) {
+      <div class="current-acolade__content">
+        <h2>{{currentAcolade().title}}</h2>
+        <h4>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}}</h4>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore
+          inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam
+          odio?</p>
+        @for(tag of currentAcolade().tags; track $index) {
         ({{tag}})
-      }
+        }
+      </div>
+      <div class="current-acolade__step">
+        @for(index of acolades; track $index) {
+          @if (index === currentAcolade()) {
+            <div class="notch__current"></div>
+          } @else {
+            <div class="notch__passive"></div>
+          }
+        }
+      </div>
     </div>
     <div class="controls">
-      <button>
-        next
+      <button class="controls__next">
+        <span class="material-symbols-rounded">
+          chevron_left
+        </span>
       </button>
-      <button>
-        prev
+      <button class="controls__prev">
+        <span class="material-symbols-rounded">
+          chevron_right
+        </span>
       </button>
     </div>
   </div>

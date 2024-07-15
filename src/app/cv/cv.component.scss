@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 .resume {
-  background-color: lighten(gray, 40);
+  background-color: lighten($color: blue, $amount: 49);
   box-shadow: 0 0 3px lighten(gray, 20);
   box-sizing: border-box;
   display: flex;
@@ -14,7 +14,7 @@
   padding: 15px;
 
   &__about {
-    background-color: lighten(gray, 45);
+    background-color: lighten($color: blue, $amount: 47);
     border-radius: 5px;
     box-shadow: 3px 3px 3px lighten(gray, 30);
     height: max-content;
@@ -33,7 +33,7 @@
   }
 
   &__priorexperience {
-    background-color: lighten(gray, 45);
+    background-color: lighten($color: blue, $amount: 47);
     border-radius: 5px;
     box-shadow: 3px 3px 3px lighten(gray, 30);
     height: max-content;
