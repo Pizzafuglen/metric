@@ -1,72 +1,62 @@
 <div class="acolades">
   <div class="acolades__work">
-    <div class="current-acolade">
-      <div class="current-acolade__content">
-        <h2>{{currentAcolade().title}}</h2>
-        <h4>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}}</h4>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore
-          inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam
-          odio?</p>
-        @for(tag of currentAcolade().tags; track $index) {
-        ({{tag}})
+    <div class="current-acolades">
+      <ul cdkListbox cdkListboxUseActiveDescendant class="current-acolades__steps">
+        @for (step of workAcolades; track step) {
+        <li cdkOption="step" class="current-acolade">
+          <div class="current-acolade__flair"></div>
+          <div class="current-acolade__content">
+            <b>
+              <small>
+                <small>
+                  <h4 class="current-acolade__date">
+                    {{step.fromDate | date:'MM/yyyy'}} |
+                    @if(step.toDate === 'now') {
+                    {{step.toDate}}
+                    }
+                    @else {
+                    {{step.toDate| date:'MM/yyyy'}}
+                    }
+
+                  </h4>
+                </small>
+              </small>
+            </b>
+            @if(step.days && +step.days >= 0) {
+              <small>{{step.days}} days</small>
+            }
+            <h2 class="current-acolade__title"> {{step.title}}</h2>
+            <p class="current-acolade__description">{{step.description}}</p>
+            <div class="current-acolade__tags">
+              @for(tag of step.tags; track $index) {
+              <p class="current-acolade__tag">{{tag}}</p>
+              }
+            </div>
+          </div>
+        </li>
         }
-      </div>
-      <div class="current-acolade__step">
-        @for(index of acolades; track $index) {
-          @if (index === currentAcolade()) {
-            <div class="notch__current"></div>
-          } @else {
-            <div class="notch__passive"></div>
-          }
-        }
-      </div>
-    </div>
-    <div class="controls">
-      <button class="controls__prev" (click)="selectPrevAcolade($event)">
-        <span class="material-symbols-rounded">
-          chevron_left
-        </span>
-      </button>
-      <button class="controls__next" (click)="selectNextAcolade($event)">
-        <span class="material-symbols-rounded">
-          chevron_right
-        </span>
-      </button>
+      </ul>
+
     </div>
   </div>
-  <div class="acolades__education">
-    <div class="current-acolade">
-      <div class="current-acolade__content">
-        <h2>{{currentAcolade().title}}</h2>
-        <h4>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}}</h4>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae dignissimos debitis laboriosam nostrum dolore
-          inventore veniam, voluptatum temporibus in delectus non natus voluptates est quis nulla ipsa magnam quisquam
-          odio?</p>
-        @for(tag of currentAcolade().tags; track $index) {
-        ({{tag}})
+  <div class="acolades__work">
+    <div class="current-acolades">
+      <!-- <ul cdkListbox cdkListboxUseActiveDescendant class="current-acolades__steps">
+        @for (step of workAcolades; track step) {
+        <li cdkOption="step" class="current-acolade">
+          <div class="current-acolade__flair">
+
+          </div>
+          <div class="current-acolade__content">
+            <h4>{{step.title}}</h4>
+            <p>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}} </p>
+            @for(tag of currentAcolade().tags; track $index) {
+            ({{tag}})
+            }
+          </div>
+        </li>
         }
-      </div>
-      <div class="current-acolade__step">
-        @for(index of acolades; track $index) {
-          @if (index === currentAcolade()) {
-            <div class="notch__current"></div>
-          } @else {
-            <div class="notch__passive"></div>
-          }
-        }
-      </div>
-    </div>
-    <div class="controls">
-      <button class="controls__next">
-        <span class="material-symbols-rounded">
-          chevron_left
-        </span>
-      </button>
-      <button class="controls__prev">
-        <span class="material-symbols-rounded">
-          chevron_right
-        </span>
-      </button>
+      </ul> -->
     </div>
   </div>
 </div>
