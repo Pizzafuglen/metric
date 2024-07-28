@@ -39,24 +39,43 @@
 
     </div>
   </div>
-  <div class="acolades__work">
+  <div class="acolades__education">
     <div class="current-acolades">
-      <!-- <ul cdkListbox cdkListboxUseActiveDescendant class="current-acolades__steps">
-        @for (step of workAcolades; track step) {
+      <ul cdkListbox cdkListboxUseActiveDescendant class="current-acolades__steps">
+        @for (step of educationalAcolades; track step) {
         <li cdkOption="step" class="current-acolade">
-          <div class="current-acolade__flair">
-
-          </div>
+          <div class="current-acolade__flair"></div>
           <div class="current-acolade__content">
-            <h4>{{step.title}}</h4>
-            <p>{{currentAcolade().fromDate | date}} - {{currentAcolade().toDate | date}} </p>
-            @for(tag of currentAcolade().tags; track $index) {
-            ({{tag}})
+            <b>
+              <small>
+                <small>
+                  <h4 class="current-acolade__date">
+                    {{step.fromDate | date:'MM/yyyy'}} |
+                    @if(step.toDate === 'now') {
+                    {{step.toDate}}
+                    }
+                    @else {
+                    {{step.toDate| date:'MM/yyyy'}}
+                    }
+
+                  </h4>
+                </small>
+              </small>
+            </b>
+            @if(step.days && +step.days >= 0) {
+              <small>{{step.days}} days</small>
             }
+            <h2 class="current-acolade__title"> {{step.title}}</h2>
+            <p class="current-acolade__description">{{step.description}}</p>
+            <div class="current-acolade__tags">
+              @for(tag of step.tags; track $index) {
+              <p class="current-acolade__tag">{{tag}}</p>
+              }
+            </div>
           </div>
         </li>
         }
-      </ul> -->
+      </ul>
     </div>
   </div>
 </div>

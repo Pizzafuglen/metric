@@ -125,6 +125,41 @@ export class AcoladesComponent implements OnInit {
     },
   ]
 
+  public educationalAcolades: Acolade[] = [
+    {
+      title: 'Software Techonology BEng in Engineering - University of Southern Denmark',
+      fromDate: '2021-08',
+      toDate: 'now',
+      days: this.getDays('2021-08','now')?.toString(),
+      description: '',
+      tags: [],
+    },
+    {
+      title: 'Political Science Bachelors\'s Programme (2 Semesters Finished) - University of Southern Denmark',
+      fromDate: '2020-08',
+      toDate: '2021-06',
+      days: this.getDays('2020-08','2021-06')?.toString(),
+      description: '',
+      tags: [],
+    },
+    {
+      title: 'Robot Systems Engineering BSc in Engineering (1 Semester Finished) - University of Southern Denmark',
+      fromDate: '2019-08',
+      toDate: '2020-01',
+      days: this.getDays('2019-08','2020-01')?.toString(),
+      description: '',
+      tags: [],
+    },
+    {
+      title: 'Math/Physics - Kold College HTX (High School)',
+      fromDate: '2016-08',
+      toDate: '2019-06',
+      days: this.getDays('2016-08','2019-06')?.toString(),
+      description: '',
+      tags: [],
+    },
+  ]
+
   public currentAcolade: WritableSignal<Acolade> = signal(this.workAcolades[0])
   public currentIndex: Signal<number> = computed(() => this.workAcolades.findIndex(acolade => acolade === this.currentAcolade()));
   public totalAcolades: Signal<number> = computed(() => this.workAcolades.length);

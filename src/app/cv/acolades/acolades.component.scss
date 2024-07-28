@@ -56,12 +56,16 @@
   transition: 0.3s;
   border-radius: 5px;
   padding: 5px;
-
   gap: 15px;
 
   &__date {
     border-radius: 5px;
     margin: 0;
+  }
+
+
+  &__title {
+  white-space: nowrap;
   }
 
   &__flair {

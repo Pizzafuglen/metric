@@ -18,4 +18,22 @@
     align-items: center;
     text-align: left;
   }
+
+  &__contactMe {
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+    text-decoration: none;
+    transform: 2s;
+  }
+
+  &__contactMe > a {
+    text-decoration: none;
+    padding: 2px;
+  }
+  &__contactMe > a:hover {
+border-radius: 5px;
+width:fit-content;
+    background-color: lighten($color: blue, $amount: 42);
+  }
 }
