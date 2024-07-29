@@ -29,8 +29,7 @@ interface Acolade {
       state('in', style({transform: 'translateX(0)'})),
       transition('void => *', [style({transform: 'translateX(-100%)'}), animate(100)]),
       transition('* => void', [animate(100, style({transform: 'translateX(100%)'}))]),
-    ]), //Figure out some way to animate the switching of the acolades
-    //Or use a listbox instead, to dsplay the years
+    ]),
   ]
 })
 export class AcoladesComponent implements OnInit {
@@ -135,7 +134,7 @@ export class AcoladesComponent implements OnInit {
       tags: [],
     },
     {
-      title: 'Political Science Bachelors\'s Programme (2 Semesters Finished) - University of Southern Denmark',
+      title: 'Political Science Bachelor\'s Programme (2 Semesters Finished) - University of Southern Denmark',
       fromDate: '2020-08',
       toDate: '2021-06',
       days: this.getDays('2020-08','2021-06')?.toString(),
@@ -160,10 +159,6 @@ export class AcoladesComponent implements OnInit {
     },
   ]
 
-  public currentAcolade: WritableSignal<Acolade> = signal(this.workAcolades[0])
-  public currentIndex: Signal<number> = computed(() => this.workAcolades.findIndex(acolade => acolade === this.currentAcolade()));
-  public totalAcolades: Signal<number> = computed(() => this.workAcolades.length);
-
   public getDays(from: string, to: string) {
     const fromDate = new Date(parseInt(from.split('-')[0]), parseInt(from.split('-')[1]));
     let toDate = new Date();
@@ -175,8 +170,5 @@ export class AcoladesComponent implements OnInit {
     }
   }
 
-  public selectCurrentAcolade(): Acolade {
-    return this.workAcolades[0];
-  }
   ngOnInit(): void { }
 }

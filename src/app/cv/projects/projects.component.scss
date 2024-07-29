@@ -1,0 +1,85 @@
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+
+  &__tab {
+    height: 100%;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    background-color: lighten($color: blue, $amount: 38);
+    transition: 0.3s;
+  }
+
+  &__tab:hover {
+    height: 100%;
+    border: none;
+    background-color: lighten($color: blue, $amount: 43);
+  }
+
+  &__currentProject {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
+
+    background-color: lighten($color: blue, $amount: 43);
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  &__selectedProject {
+    background-color: lighten($color: blue, $amount: 38);
+    border-radius: 0 0 5px 5px;
+    padding: 15px;
+    height: 100%;
+  }
+
+  &__previousWork {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 5px;
+    gap: 7px;
+  }
+
+  &__previousWork-current {
+    background-color: lighten($color: blue, $amount: 41);
+    border-radius: 5px;
+    padding: 15px;
+
+  }
+
+  &__previousWork-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__previousWork-title > h3 {
+    margin: 2px;
+    font-size: 19px;
+  }
+  &__previousWork-content {
+    margin: 0;
+  }
+  &__previousWork-link {
+    margin: 0;
+    text-decoration: none;
+    background-color: lighten($color: blue, $amount: 43);
+    padding: 3px ;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  &__previousWork-link:hover {
+    background-color: lighten($color: blue, $amount: 41);
+  }
+}
+
+.tabTitle {
+  margin: 0;
+}

@@ -1,7 +1,9 @@
 .about {
   display: flex;
   flex-direction: column;
-}
+  height: 100vh;
+ }
+
 .resume {
   background-color: lighten($color: blue, $amount: 49);
   box-shadow: 0 0 3px lighten(gray, 20);
@@ -20,10 +22,6 @@
     transition: 0.5s;
   }
 
-  &__about:hover {
-    box-shadow: 3px 3px 3px lighten(gray, 20);
-  }
-
   &__overview {
     display: flex;
     flex: 1;
@@ -39,40 +37,23 @@
     transition: 0.5s;
   }
 
+  &__projects {
+    background-color: lighten($color: blue, $amount: 47);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px lighten(gray, 30);
+    height: max-content;
+    transition: 0.5s;
+  }
+
+  &__about:hover {
+    box-shadow: 3px 3px 3px lighten(gray, 20);
+  }
+
   &__priorexperience:hover {
     box-shadow: 3px 3px 3px lighten(gray, 20);
   }
 
-  &__projects {
-    background-color: lighten(gray, 45);
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px lighten(gray, 30);
-    display: flex;
-    gap: 15px;
-    height: 65%;
-    padding: 15px;
-    transition: 0.5s;
-  }
-
   &__projects:hover {
     box-shadow: 3px 3px 3px lighten(gray, 20);
-  }
-
-  &__education {
-    background-color: lighten(gray, 30);
-    border-radius: 5px;
-    flex: 1;
-  }
-
-  &__jobs {
-    background-color: lighten(gray, 30);
-    border-radius: 5px;
-    flex: 1;
-  }
-
-  &__interests {
-    background-color: lighten(gray, 30);
-    border-radius: 5px;
-    flex: 1;
   }
 }
