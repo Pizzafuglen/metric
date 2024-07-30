@@ -6,10 +6,13 @@
   width: 275px;
 
   &__picture {
-    height: 300px;
+    height: 230px;
     border-radius: 5px;
-    background-image: url(../../../../pictures/Buteo_buteo_-Scotland-8.jpg);
-    background-position: 45% 10%;
+    background-image: url(../../../../pictures/451876436_1214889329454152_3557995918988932421_n.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    object-fit: 50%;
   }
 
   &__nameDescription {
