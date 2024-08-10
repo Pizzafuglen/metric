@@ -1,8 +1,16 @@
 <div class="container">
   <label>{{label()}}</label>
-  <select class="container__selector" id="your-select">
+  <!-- <select class="container__selector" id="your-select">
     @for(option of options; track $index) {
       <option [value]="option" [label]="option.id"></option>
     }
-  </select>
+  </select> -->
+  <cdk-virtual-scroll-viewport [style.height]="500" [itemSize]="5">
+    <!-- @for (option of options; track $index){
+      <div>{{option}}</div>
+    } -->
+    <div *cdkVirtualForOf="let option of options">
+      {{option}}
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, type OnInit } from '@angular/core';
 import {CdkListboxModule} from '@angular/cdk/listbox';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-selector',
@@ -8,6 +9,7 @@ import {CdkListboxModule} from '@angular/cdk/listbox';
   imports: [
     CommonModule,
     CdkListboxModule,
+    ScrollingModule,
   ],
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.scss',
