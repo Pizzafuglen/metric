@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="display">
+  <!-- <div class="display">
     <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
       <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'">
       {{node.id}}
@@ -27,5 +27,12 @@
         }
       </mat-select>
     </mat-form-field>
-  </div>
+  </div> -->
+  @for (item of elementArr; track $index) {
+    @if(item%2===0) {
+      <button #button class="test__button">{{item}}</button>
+    } @else {
+      <button #button disabled="true" class="test__button">{{item}}</button>
+    }
+  }
 </div>

@@ -13,7 +13,7 @@ export const routes: Routes = [
     component: CvComponent,
   },
   {
-    path: 'test-component',
+    path: 'test',
     component: TestComponent,
   }
 ];
